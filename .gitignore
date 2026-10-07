@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+boutique.db
+.DS_Store

@@ -1,0 +1,602 @@
+/* ==========================================================================
+   ATELIER FLORA - BOTANICAL ART & HANDMADE CRAFTS DESIGN SYSTEM
+   Theme: Flowery, Botanical, Soft Petal & Sage with Gold Accents
+   ========================================================================== */
+
+:root {
+  --color-petal-bg: #FFF9F8;
+  --color-petal-soft: #FDF2F0;
+  --color-petal-card: #FFFFFF;
+  --color-blush: #F7E7E5;
+  --color-rose: #C96872;
+  --color-rose-deep: #A84954;
+  --color-sage: #56725C;
+  --color-sage-light: #EBF2EC;
+  --color-sage-deep: #384F3D;
+  --color-gold: #C5A059;
+  --color-gold-light: #DFBE7B;
+  --color-charcoal: #1C1917;
+  --color-noir: #12100E;
+  --color-muted: #6E6862;
+  --color-border: #EADBDA;
+  --color-border-light: #F2E8E7;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --shadow-soft: 0 4px 20px rgba(201, 104, 114, 0.08);
+  --shadow-card: 0 8px 30px rgba(28, 25, 23, 0.06);
+  --shadow-hover: 0 14px 40px rgba(201, 104, 114, 0.16);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-petal-bg);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Accessibility: Visible Focus Rings */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 3px;
+}
+
+/* Typography Utilities */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Floral Gradients & Text */
+.floral-gradient-text {
+  background: linear-gradient(135deg, #B54E5B 0%, #C96872 50%, #D48991 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #A88134 0%, #C5A059 50%, #E6C875 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Flowery Drifting Petals Canvas / Background Animation */
+.petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petal {
+  position: absolute;
+  background: radial-gradient(circle, rgba(247, 206, 204, 0.75) 0%, rgba(228, 147, 156, 0.35) 70%, transparent 100%);
+  border-radius: 150% 0 150% 0;
+  opacity: 0.65;
+  animation: petalDrift 14s infinite linear;
+}
+
+.petal:nth-child(1) { width: 14px; height: 18px; left: 8%; animation-duration: 12s; animation-delay: 0s; }
+.petal:nth-child(2) { width: 18px; height: 22px; left: 22%; animation-duration: 15s; animation-delay: 2s; }
+.petal:nth-child(3) { width: 12px; height: 16px; left: 45%; animation-duration: 11s; animation-delay: 4s; }
+.petal:nth-child(4) { width: 20px; height: 25px; left: 68%; animation-duration: 16s; animation-delay: 1s; }
+.petal:nth-child(5) { width: 15px; height: 19px; left: 85%; animation-duration: 13s; animation-delay: 3s; }
+.petal:nth-child(6) { width: 13px; height: 17px; left: 93%; animation-duration: 14s; animation-delay: 5s; }
+
+@keyframes petalDrift {
+  0% {
+    transform: translateY(-20px) rotate(0deg) translateX(0px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(105vh) rotate(420deg) translateX(80px);
+    opacity: 0;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-petal-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #E8D3CE;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rose);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-charcoal);
+  color: #FFFFFF;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid var(--color-charcoal);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+.btn-primary:hover {
+  background-color: var(--color-rose);
+  border-color: var(--color-rose);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(201, 104, 114, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-charcoal);
+  padding: 0.85rem 1.8rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+.btn-secondary:hover {
+  border-color: var(--color-rose);
+  color: var(--color-rose);
+  background-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-floral {
+  background: linear-gradient(135deg, #C96872 0%, #D97E87 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+  box-shadow: 0 6px 20px rgba(201, 104, 114, 0.28);
+}
+.btn-floral:hover {
+  background: linear-gradient(135deg, #B54E5B 0%, #C96872 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 104, 114, 0.38);
+}
+
+/* Header & Sticky Nav */
+.announcement-bar {
+  background-color: var(--color-noir);
+  color: #F8D8DC;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(201, 104, 114, 0.2);
+}
+
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(255, 249, 248, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-light);
+  transition: var(--transition-smooth);
+}
+
+/* Product Card Styling for Handmade Crafts */
+.product-card {
+  position: relative;
+  background: var(--color-petal-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: #E2B9B9;
+}
+
+.product-image-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 square for crafts & botanical objects */
+  overflow: hidden;
+  background-color: var(--color-petal-soft);
+}
+
+.product-image-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+}
+
+.product-image-wrap .img-secondary {
+  opacity: 0;
+}
+
+.product-card:hover .img-primary {
+  transform: scale(1.06);
+}
+.product-card:hover .img-secondary {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.badge-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  color: var(--color-rose-deep);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(201, 104, 114, 0.25);
+  z-index: 2;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: var(--transition-smooth);
+}
+.wishlist-btn:hover {
+  background: #FFFFFF;
+  transform: scale(1.1);
+  color: var(--color-rose);
+}
+.wishlist-btn.active svg {
+  fill: var(--color-rose);
+  stroke: var(--color-rose);
+}
+
+.quick-view-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(28, 25, 23, 0.85) 0%, transparent 100%);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition-smooth);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.product-card:hover .quick-view-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modals & Slide-in Drawers */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 16, 14, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background-color: #FFFFFF;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+  z-index: 101;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+}
+.cart-drawer.active {
+  transform: translateX(0);
+}
+
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -46%) scale(0.96);
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  z-index: 102;
+  width: 92%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.modal-dialog.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Cookie Consent Floating Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 580px;
+  background: rgba(28, 25, 23, 0.96);
+  backdrop-filter: blur(12px);
+  color: #FAF4F4;
+  border: 1px solid rgba(201, 104, 114, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transform: translateY(120%);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.cookie-banner.visible {
+  transform: translateY(0);
+}
+
+/* Free Shipping Progress Meter */
+.shipping-meter {
+  height: 6px;
+  background: var(--color-blush);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.shipping-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-rose) 0%, #E89FA6 100%);
+  transition: width 0.5s ease;
+}
+
+/* Toast Notification */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.toast-msg {
+  background: var(--color-noir);
+  color: #FFF2F4;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-rose);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: toastIn 0.35s forwards, toastOut 0.35s 3.2s forwards;
+}
+
+@keyframes toastIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes toastOut {
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Floating Designer Studio Toggle */
+.designer-mode-badge {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 40;
+  background: var(--color-noir);
+  color: #F8D8DC;
+  border: 1px solid var(--color-rose);
+  border-radius: 999px;
+  padding: 10px 18px;
+  box-shadow: 0 8px 24px rgba(201, 104, 114, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+.designer-mode-badge:hover {
+  background: var(--color-rose);
+  color: #FFFFFF;
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Interactive Mock Credit Card */
+.mock-credit-card {
+  width: 100%;
+  height: 185px;
+  background: linear-gradient(135deg, #1C1917 0%, #2E2827 50%, #161312 100%);
+  border-radius: 14px;
+  padding: 1.5rem;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(201, 104, 114, 0.35);
+  margin-bottom: 1.25rem;
+}
+
+.mock-credit-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(201, 104, 114, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.card-chip {
+  width: 36px;
+  height: 26px;
+  background: linear-gradient(135deg, #D4AF37 0%, #F5DE98 50%, #AA822A 100%);
+  border-radius: 4px;
+}
+
+.checkout-step-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--color-blush);
+  color: var(--color-muted);
+  transition: var(--transition-smooth);
+}
+.checkout-step-pill.active {
+  background: var(--color-charcoal);
+  color: #FFFFFF;
+}
+.checkout-step-pill.completed {
+  background: var(--color-sage);
+  color: #FFFFFF;
+}
+
+/* Legal & Policy Modal Document Styling */
+.legal-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.legal-content p, .legal-content li {
+  font-size: 0.82rem;
+  color: #4A4642;
+  line-height: 1.65;
+  margin-bottom: 0.65rem;
+}
+.legal-content ul {
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.legal-content strong {
+  color: var(--color-charcoal);
+}
+
+@media (max-width: 768px) {
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+}
